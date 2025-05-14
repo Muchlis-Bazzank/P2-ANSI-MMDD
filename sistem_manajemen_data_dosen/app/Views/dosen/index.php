@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Daftar Dosen</title>
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/font-awesome.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/font-awesome.css') ?>">
 </head>
 <body class="container mt-5">
     <h2>Daftar Dosen</h2>
