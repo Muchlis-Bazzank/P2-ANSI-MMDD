@@ -25,4 +25,5 @@ class Dosen extends BaseController
 
         return view('dosen/index', $data);  
     }
+
 }

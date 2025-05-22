@@ -21,3 +21,17 @@ $routes->get('/dosen/delete/(:any)', 'Dosen::delete/$1');
 $routes->get('/dosen/create', 'Dosen::create');
 $routes->post('/dosen/store', 'Dosen::store');
 $routes->post('/dosen/update/(:any)', 'Dosen::update/$1');
+
+$routes->group('auth', function($routes) {
+    $routes->get('/', 'Auth::index');
+    $routes->post('login', 'Auth::login');
+});
+
+// Contoh routes untuk dashboard dengan filter
+$routes->group('admin', ['filter' => 'auth:admin'], function($routes) {
+    $routes->get('dashboard', 'Admin::dashboard');
+});
+
+$routes->group('dosen', ['filter' => 'auth:dosen'], function($routes) {
+    $routes->get('dashboard', 'Dosen::dashboard');
+});
