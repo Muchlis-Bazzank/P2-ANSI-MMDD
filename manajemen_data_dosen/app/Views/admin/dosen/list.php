@@ -34,6 +34,9 @@
                         class="btn btn-sm btn-warning">Edit</a>
                     <a href="<?= base_url('admin/dosen/delete/' . $dosen['id']) ?>" class="btn btn-sm btn-danger"
                         onclick="return confirm('Hapus dosen ini?')">Hapus</a>
+                    <a href="<?= base_url('admin/dosen/reset-password-form/' . $dosen['id']) ?>"
+                        class="btn btn-sm btn-secondary">Reset Password</a>
+
                 </td>
             </tr>
             <?php endforeach ?>

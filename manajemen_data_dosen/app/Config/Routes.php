@@ -45,6 +45,10 @@ $routes->group('dosen', ['filter' => 'role:dosen'], function($routes) {
     $routes->get('profil/jadwal/edit/(:num)', 'Dosen\ProfilController::editJadwal/$1');
     $routes->post('profil/jadwal/update/(:num)', 'Dosen\ProfilController::updateJadwal/$1');
     $routes->get('profil/jadwal/hapus/(:num)', 'Dosen\ProfilController::hapusJadwal/$1');
+    // Dosen Ubah Password
+    $routes->get('ubah-password', 'Dosen\AkunController::formPassword');
+    $routes->post('ubah-password', 'Dosen\AkunController::updatePassword');
+
 });
 
 // ------------------------------------------------------------
@@ -79,6 +83,10 @@ $routes->group('admin', ['filter' => 'role:admin'], function($routes) {
     $routes->get('jadwal/edit/(:num)', 'Admin\JadwalController::edit/$1');
     $routes->post('jadwal/update/(:num)', 'Admin\JadwalController::update/$1');
     $routes->get('jadwal/delete/(:num)', 'Admin\JadwalController::delete/$1');
+    // Reset Password Dosen
+    $routes->get('dosen/reset-password-form/(:num)', 'Admin\DosenController::resetPasswordForm/$1');
+    $routes->post('dosen/reset-password/(:num)', 'Admin\DosenController::resetPassword/$1');
+
 });
 
 // ------------------------------------------------------------

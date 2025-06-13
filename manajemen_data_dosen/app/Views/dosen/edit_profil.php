@@ -14,7 +14,9 @@
         </div>
         <div class="mb-3">
             <label>NIDN</label>
-            <input type="text" name="nidn" class="form-control" value="<?= esc($profil['nidn']) ?>">
+            <input type="text" name="nidn" class="form-control" pattern="\d{10}" maxlength="10"
+                value="<?= esc($profil['nidn']) ?>" required title="NIDN harus terdiri dari 10 digit angka"
+                placeholder="Contoh: 1234567890">
         </div>
         <div class="mb-3">
             <label>NIP</label>
@@ -22,7 +24,8 @@
         </div>
         <div class="mb-3">
             <label>Gelar</label>
-            <input type="text" name="gelar" class="form-control" value="<?= esc($profil['gelar']) ?>">
+            <input type="text" name="gelar" class="form-control" value="<?= esc($profil['gelar']) ?>"
+                placeholder="Contoh: M.Kom">
         </div>
         <div class="mb-3">
             <label>Alamat</label>

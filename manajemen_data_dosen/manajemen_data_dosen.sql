@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 08 Jun 2025 pada 15.00
+-- Waktu pembuatan: 13 Jun 2025 pada 16.18
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -39,7 +39,8 @@ CREATE TABLE `bidang_keahlian` (
 
 INSERT INTO `bidang_keahlian` (`id`, `dosen_id`, `nama_keahlian`) VALUES
 (4, 5, 'Ilmu Komputer'),
-(5, 6, 'Ilmu Komputer');
+(5, 6, 'Ilmu Komputer'),
+(6, 5, 'Sistem Informasi');
 
 -- --------------------------------------------------------
 
@@ -50,7 +51,7 @@ INSERT INTO `bidang_keahlian` (`id`, `dosen_id`, `nama_keahlian`) VALUES
 CREATE TABLE `dosen` (
   `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `nidn` varchar(20) DEFAULT NULL,
+  `nidn` char(10) NOT NULL,
   `nip` varchar(20) DEFAULT NULL,
   `gelar` varchar(100) DEFAULT NULL,
   `alamat` text DEFAULT NULL,
@@ -63,8 +64,10 @@ CREATE TABLE `dosen` (
 --
 
 INSERT INTO `dosen` (`id`, `user_id`, `nidn`, `nip`, `gelar`, `alamat`, `telepon`, `foto`) VALUES
-(5, 6, 'B02220016', 'B02220016', 'S.Kom', 'Rabangodu Utara', '082340625908', '1749378541_5be0ff2b0f6a39ed9151.jpeg'),
-(6, 7, '0011223344', '', 'S.Kom', 'Ngali', '082345678999', NULL);
+(5, 6, '0022220016', '0022220016', 'S.Kom', 'Rabangodu Utara', '082340625908', '1749388170_e95542d2ac7d1cacca5f.jpeg'),
+(6, 7, '0011223344', '', 'M.Kom', 'Ngali', '082345678999', '1749698786_ace558ce209b45bf88e9.jpg'),
+(7, 11, '0022230071', '', '', 'Wera', '082341396531', NULL),
+(8, 13, '0022230073', '', 'M.Kom', 'Sape', '082341371229', NULL);
 
 -- --------------------------------------------------------
 
@@ -113,7 +116,8 @@ CREATE TABLE `jadwal_mengajar` (
 
 INSERT INTO `jadwal_mengajar` (`id`, `dosen_id`, `mata_kuliah`, `hari`, `jam_mulai`, `jam_selesai`, `ruang`) VALUES
 (3, 5, 'Web Developer', 'Senin', '08:00:00', '10:30:00', '1'),
-(4, 6, 'Pakar Cinta', 'Selasa', '08:00:00', '10:30:00', '2');
+(4, 6, 'Pakar Telematika', 'Selasa', '08:00:00', '10:30:00', '2'),
+(5, 6, 'Sistem Informasi', 'Rabu', '08:00:00', '10:00:00', '3');
 
 -- --------------------------------------------------------
 
@@ -152,10 +156,11 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `nama`, `email`, `password`, `role`, `created_at`, `updated_at`) VALUES
 (6, 'Muchlis', 'muchlisbazzank@gmail.com', '$2y$10$W6L2vwN7s7Q5avrfKbhbC.mp12Ke08I4mr6Wj4AhnteDTCHO3w7KO', 'dosen', '2025-06-07 15:57:13', '2025-06-07 15:57:13'),
-(7, 'Salman', 'salmangalau@gmail.com', '$2y$10$EFJyFa5NnkJ296.dxJODmenuMEZ40WmfxNTODVE/Wkt7.R4OVNQ.S', 'dosen', '2025-06-07 16:03:05', '2025-06-07 16:03:05'),
+(7, 'Salman', 'salmanbahagia@gmail.com', '$2y$10$PDebvLj9TWFAEZoDxHijdujyPa8s6s9IXQUs.hXwlUdH2G7lnagQK', 'dosen', '2025-06-07 16:03:05', '2025-06-13 12:23:47'),
 (9, 'Admin Bazzank', 'bazzank@gmail.com', '$2y$10$Eaa0POUNdYhd8feF5S3W2eMbHybyZtGcdAQwDRaUoC7jvu9N30Leq', 'admin', '2025-06-08 17:40:51', '2025-06-08 17:40:51'),
 (11, 'Mirdan', 'mirdanbuzzer@gmail.com', '$2y$10$Db9zVbdeUH1.hKF/ltxXY.yLH2qlUMudh.hgMz8nlKnrrH4JlXAPG', 'dosen', '2025-06-08 11:13:40', '2025-06-08 11:13:40'),
-(12, 'Bazzank', 'adminbazzank@gmail.com', '$2y$10$ITjYfGzrq0r3mAMcHu3x8.B3JhZ6GgnydI23nbWZcwBrxH1MN7lYi', 'admin', '2025-06-08 20:29:42', '2025-06-08 20:29:42');
+(12, 'Bazzank', 'adminbazzank@gmail.com', '$2y$10$ITjYfGzrq0r3mAMcHu3x8.B3JhZ6GgnydI23nbWZcwBrxH1MN7lYi', 'admin', '2025-06-08 20:29:42', '2025-06-08 20:29:42'),
+(13, 'Wahyu', 'wahyutri@gmail.com', '$2y$10$ZdEspY97Virk/7QuOoTM8O46NpCzrKZ757sE1mboLr116EOFgPtE2', 'dosen', '2025-06-13 13:54:08', '2025-06-13 13:54:08');
 
 --
 -- Indexes for dumped tables
@@ -213,25 +218,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `bidang_keahlian`
 --
 ALTER TABLE `bidang_keahlian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `dosen`
 --
 ALTER TABLE `dosen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `evaluasi_kinerja`
 --
 ALTER TABLE `evaluasi_kinerja`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `jadwal_mengajar`
 --
 ALTER TABLE `jadwal_mengajar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `permintaan_perubahan`
@@ -243,7 +248,7 @@ ALTER TABLE `permintaan_perubahan`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

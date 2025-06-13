@@ -9,7 +9,8 @@
         <?= csrf_field() ?>
         <div class="mb-3">
             <label>NIDN</label>
-            <input type="text" name="nidn" class="form-control" required>
+            <input type="text" name="nidn" class="form-control" pattern="\d{10}" maxlength="10" required
+                title="NIDN harus terdiri dari 10 digit angka" placeholder="Contoh: 1234567890">
         </div>
         <div class="mb-3">
             <label>NIP</label>
@@ -17,7 +18,7 @@
         </div>
         <div class="mb-3">
             <label>Gelar</label>
-            <input type="text" name="gelar" class="form-control">
+            <input type="text" name="gelar" class="form-control" placeholder="Contoh: M.Kom">
         </div>
         <div class="mb-3">
             <label>Alamat</label>

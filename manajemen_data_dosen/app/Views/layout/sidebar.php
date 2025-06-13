@@ -1,35 +1,22 @@
-<!-- Tombol toggle sidebar -->
-<button class="btn btn-outline-secondary btn-sm m-2 d-md-none" id="toggleSidebar">
-    ☰
-</button>
+<div class="sidebar">
+    <a href="<?= base_url('/') ?>" class="text-white text-decoration-none fs-5 d-block px-3 py-2 fw-bold">Sistem
+        Dosen</a>
+    <hr class="bg-secondary my-1">
 
-<div id="sidebar" class="d-flex flex-column flex-shrink-0 p-3 bg-light"
-    style="width: 250px; height: 100vh; position: fixed; transition: all 0.3s;">
-    <a href="<?= base_url('/') ?>"
-        class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-        <span class="fs-4">Sistem Dosen</span>
-    </a>
-    <hr>
     <ul class="nav nav-pills flex-column mb-auto">
         <?php if (session()->get('role') === 'admin'): ?>
-        <li class="nav-item">
-            <a href="<?= base_url('admin/dashboard') ?>" class="nav-link link-dark">Dashboard</a>
-        </li>
-        <li>
-            <a href="<?= base_url('admin/dosen') ?>" class="nav-link link-dark">Kelola Dosen</a>
-        </li>
+        <li><a href="<?= base_url('admin/dashboard') ?>" class="nav-link text-white">Dashboard</a></li>
+        <li><a href="<?= base_url('admin/dosen') ?>" class="nav-link text-white">Kelola Dosen</a></li>
         <?php elseif (session()->get('role') === 'dosen'): ?>
-        <li class="nav-item">
-            <a href="<?= base_url('dosen/dashboard') ?>" class="nav-link link-dark">Dashboard</a>
-        </li>
-        <li>
-            <a href="<?= base_url('dosen/profil') ?>" class="nav-link link-dark">Profil Saya</a>
-        </li>
+        <li><a href="<?= base_url('dosen/dashboard') ?>" class="nav-link text-white">Dashboard</a></li>
+        <li><a href="<?= base_url('dosen/profil') ?>" class="nav-link text-white">Profil Saya</a></li>
+        <li><a href="<?= base_url('dosen/ubah-password') ?>" class="nav-link text-white">Ubah Password</a></li>
         <?php endif; ?>
-        <li><a href="<?= base_url('auth/logout') ?>" class="nav-link text-danger">Logout</a></li>
+        <li class="mt-2"><a href="<?= base_url('auth/logout') ?>" class="nav-link text-danger">Logout</a></li>
     </ul>
-    <hr>
-    <div class="text-muted small">
-        Login sebagai: <strong><?= session('email') ?></strong>
+
+    <hr class="bg-secondary">
+    <div class="text-light small px-3">
+        Login sebagai: <br><strong><?= esc(session('email')) ?></strong>
     </div>
 </div>

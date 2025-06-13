@@ -11,5 +11,7 @@ class UserModel extends Model
 
     protected $allowedFields = ['nama', 'email', 'password', 'role'];
 
+    protected $returnType = 'array';
+
     protected $useTimestamps = true;
 }

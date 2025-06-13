@@ -92,4 +92,29 @@ class DosenController extends BaseController
 
         return redirect()->to('/admin/dosen')->with('success', 'Dosen dihapus.');
     }
+
+    public function resetPasswordForm($id)
+{
+    $dosen = (new DosenModel())
+        ->select('dosen.*, users.email, users.nama')
+        ->join('users', 'users.id = dosen.user_id')
+        ->where('dosen.id', $id)
+        ->first();
+
+    return view('admin/dosen/reset_password', ['dosen' => $dosen]);
+}
+
+public function resetPassword($id)
+{
+    $userModel = new UserModel();
+    $dosen = (new DosenModel())->find($id);
+    $newPassword = $this->request->getPost('password');
+
+    $userModel->update($dosen['user_id'], [
+        'password' => password_hash($newPassword, PASSWORD_DEFAULT)
+    ]);
+
+    return redirect()->to('/admin/dosen')->with('success', 'Password berhasil direset.');
+}
+
 }
