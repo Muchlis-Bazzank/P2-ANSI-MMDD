@@ -48,7 +48,13 @@ $routes->group('dosen', ['filter' => 'role:dosen'], function($routes) {
     // Dosen Ubah Password
     $routes->get('ubah-password', 'Dosen\AkunController::formPassword');
     $routes->post('ubah-password', 'Dosen\AkunController::updatePassword');
-
+    // Portofolio
+    $routes->get('portofolio', 'Dosen\PortofolioController::index');
+    $routes->get('portofolio/create', 'Dosen\PortofolioController::create');
+    $routes->post('portofolio/store', 'Dosen\PortofolioController::store');
+    $routes->get('portofolio/edit/(:num)', 'Dosen\PortofolioController::edit/$1');
+    $routes->post('portofolio/update/(:num)', 'Dosen\PortofolioController::update/$1');
+    $routes->get('portofolio/delete/(:num)', 'Dosen\PortofolioController::delete/$1');
 });
 
 // ------------------------------------------------------------
@@ -86,6 +92,8 @@ $routes->group('admin', ['filter' => 'role:admin'], function($routes) {
     // Reset Password Dosen
     $routes->get('dosen/reset-password-form/(:num)', 'Admin\DosenController::resetPasswordForm/$1');
     $routes->post('dosen/reset-password/(:num)', 'Admin\DosenController::resetPassword/$1');
+    // Portofolio
+    $routes->get('portofolio', 'Admin\PortofolioController::index');
 
 });
 

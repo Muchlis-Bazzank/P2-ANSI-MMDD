@@ -10,6 +10,7 @@
         <?php elseif (session()->get('role') === 'dosen'): ?>
         <li><a href="<?= base_url('dosen/dashboard') ?>" class="nav-link text-white">Dashboard</a></li>
         <li><a href="<?= base_url('dosen/profil') ?>" class="nav-link text-white">Profil Saya</a></li>
+        <li><a href="<?= base_url('dosen/portofolio') ?>" class="nav-link text-white">Portofolio Tri Dharma</a></li>
         <li><a href="<?= base_url('dosen/ubah-password') ?>" class="nav-link text-white">Ubah Password</a></li>
         <?php endif; ?>
         <li class="mt-2"><a href="<?= base_url('auth/logout') ?>" class="nav-link text-danger">Logout</a></li>

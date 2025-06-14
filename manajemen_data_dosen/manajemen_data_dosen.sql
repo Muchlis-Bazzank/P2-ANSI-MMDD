@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Jun 2025 pada 16.18
+-- Waktu pembuatan: 14 Jun 2025 pada 16.24
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -64,10 +64,11 @@ CREATE TABLE `dosen` (
 --
 
 INSERT INTO `dosen` (`id`, `user_id`, `nidn`, `nip`, `gelar`, `alamat`, `telepon`, `foto`) VALUES
-(5, 6, '0022220016', '0022220016', 'S.Kom', 'Rabangodu Utara', '082340625908', '1749388170_e95542d2ac7d1cacca5f.jpeg'),
+(5, 6, '0022220016', '0022220016', 'M.Kom', 'Rabangodu Utara', '082340625908', '1749388170_e95542d2ac7d1cacca5f.jpeg'),
 (6, 7, '0011223344', '', 'M.Kom', 'Ngali', '082345678999', '1749698786_ace558ce209b45bf88e9.jpg'),
-(7, 11, '0022230071', '', '', 'Wera', '082341396531', NULL),
-(8, 13, '0022230073', '', 'M.Kom', 'Sape', '082341371229', NULL);
+(7, 11, '0022230071', '', '', 'Wera', '082341396531', '1749909247_b054b35f26079f0b0c6c.jpg'),
+(8, 13, '0022230073', '', 'M.Kom', 'Sape', '082341371229', '1749909347_d3f6830995e4e4a9a87c.jpg'),
+(9, 14, '0022230076', '', 'M.Kom', 'Wera', '082341371235', '1749910233_eb16e233c02b29b5d251.jpg');
 
 -- --------------------------------------------------------
 
@@ -137,6 +138,32 @@ CREATE TABLE `permintaan_perubahan` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `portofolio`
+--
+
+CREATE TABLE `portofolio` (
+  `id` int(11) NOT NULL,
+  `dosen_id` int(11) NOT NULL,
+  `kategori` enum('pengajaran','penelitian','pengabdian') NOT NULL,
+  `judul` varchar(255) NOT NULL,
+  `deskripsi` text DEFAULT NULL,
+  `tahun` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `portofolio`
+--
+
+INSERT INTO `portofolio` (`id`, `dosen_id`, `kategori`, `judul`, `deskripsi`, `tahun`, `created_at`, `updated_at`) VALUES
+(1, 6, 'pengajaran', 'Mengajar Tentang Kehidupan', 'Ini hanya contoh', 2024, '2025-06-14 12:30:46', '2025-06-14 12:30:46'),
+(2, 6, 'penelitian', 'Contoh Penelitian', 'Ini Contoh', 2022, '2025-06-14 13:16:48', '2025-06-14 13:18:54'),
+(3, 6, 'pengabdian', 'Contoh Pengabdian', 'Ini Hanya Contoh', 2020, '2025-06-14 13:17:25', '2025-06-14 13:17:25');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `users`
 --
 
@@ -160,7 +187,8 @@ INSERT INTO `users` (`id`, `nama`, `email`, `password`, `role`, `created_at`, `u
 (9, 'Admin Bazzank', 'bazzank@gmail.com', '$2y$10$Eaa0POUNdYhd8feF5S3W2eMbHybyZtGcdAQwDRaUoC7jvu9N30Leq', 'admin', '2025-06-08 17:40:51', '2025-06-08 17:40:51'),
 (11, 'Mirdan', 'mirdanbuzzer@gmail.com', '$2y$10$Db9zVbdeUH1.hKF/ltxXY.yLH2qlUMudh.hgMz8nlKnrrH4JlXAPG', 'dosen', '2025-06-08 11:13:40', '2025-06-08 11:13:40'),
 (12, 'Bazzank', 'adminbazzank@gmail.com', '$2y$10$ITjYfGzrq0r3mAMcHu3x8.B3JhZ6GgnydI23nbWZcwBrxH1MN7lYi', 'admin', '2025-06-08 20:29:42', '2025-06-08 20:29:42'),
-(13, 'Wahyu', 'wahyutri@gmail.com', '$2y$10$ZdEspY97Virk/7QuOoTM8O46NpCzrKZ757sE1mboLr116EOFgPtE2', 'dosen', '2025-06-13 13:54:08', '2025-06-13 13:54:08');
+(13, 'Wahyu', 'wahyutri@gmail.com', '$2y$10$ZdEspY97Virk/7QuOoTM8O46NpCzrKZ757sE1mboLr116EOFgPtE2', 'dosen', '2025-06-13 13:54:08', '2025-06-13 13:54:08'),
+(14, 'Muslimin', 'kangmustofa@gmail.com', '$2y$10$myKpCc.Ciwq7WLN2XHDvEOCfhOFZku1I.jEW1cwPwfT9O9.JJPsZS', 'dosen', '2025-06-14 14:09:06', '2025-06-14 14:09:06');
 
 --
 -- Indexes for dumped tables
@@ -204,6 +232,13 @@ ALTER TABLE `permintaan_perubahan`
   ADD KEY `dosen_id` (`dosen_id`);
 
 --
+-- Indeks untuk tabel `portofolio`
+--
+ALTER TABLE `portofolio`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `dosen_id` (`dosen_id`);
+
+--
 -- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
@@ -224,7 +259,7 @@ ALTER TABLE `bidang_keahlian`
 -- AUTO_INCREMENT untuk tabel `dosen`
 --
 ALTER TABLE `dosen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `evaluasi_kinerja`
@@ -245,10 +280,16 @@ ALTER TABLE `permintaan_perubahan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT untuk tabel `portofolio`
+--
+ALTER TABLE `portofolio`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -284,6 +325,12 @@ ALTER TABLE `jadwal_mengajar`
 ALTER TABLE `permintaan_perubahan`
   ADD CONSTRAINT `permintaan_perubahan_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `permintaan_perubahan_ibfk_2` FOREIGN KEY (`dosen_id`) REFERENCES `dosen` (`id`);
+
+--
+-- Ketidakleluasaan untuk tabel `portofolio`
+--
+ALTER TABLE `portofolio`
+  ADD CONSTRAINT `portofolio_ibfk_1` FOREIGN KEY (`dosen_id`) REFERENCES `dosen` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

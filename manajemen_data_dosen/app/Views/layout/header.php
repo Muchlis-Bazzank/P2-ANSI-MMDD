@@ -125,6 +125,8 @@
                                     href="<?= base_url('dosen/dashboard') ?>">Dashboard</a></li>
                             <li class="nav-item"><a class="nav-link" href="<?= base_url('dosen/profil') ?>">Profil
                                     Saya</a></li>
+                            <li class="nav-item"><a class="nav-link"
+                                    href="<?= base_url('dosen/portofolio') ?>">Portofolio</a></li>
                             <?php endif; ?>
                             <?php else: ?>
                             <li class="nav-item"><a class="nav-link" href="<?= base_url('/') ?>">Beranda</a></li>
